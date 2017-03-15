@@ -4,7 +4,9 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    trader.cpp
+    trader.cpp \
+    market.cpp
 
 HEADERS += \
-    trader.h
+    trader.h \
+    market.h

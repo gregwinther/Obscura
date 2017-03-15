@@ -1,4 +1,5 @@
 #include <utility>
+#include <tuple>
 #ifndef TRADER_H
 #define TRADER_H
 
@@ -16,7 +17,7 @@ private:
 public:
     Trader();
 
-    std::pair<bool,double> placeOrder();
+    std::tuple<bool,double> placeOrder();
 
     void setMarketPrice(double marketPrice);
 

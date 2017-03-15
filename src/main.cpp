@@ -1,21 +1,32 @@
 #include <iostream>
 #include "trader.h"
+#include "market.h"
 #include <utility>
+#include <tuple>
 
 using namespace std;
 
 int main(int argc, char *argv[])
 {
-    Trader* traderJoe;
-    traderJoe = new Trader();
+    Trader* traderJoe = new Trader();
 
     traderJoe->setCash(300);
 
-    double traderWealth = traderJoe->getWealth();
+    tuple<bool,double> limitOrder;
 
-    cout << "Trader Joe's wealth is: " << traderWealth << endl;
+    for (int i = 0; i < 10; i++) {
+        limitOrder = traderJoe->placeOrder();
+        if (get<0>(limitOrder)) {
+            cout << "Buy @ price: " << get<1>(limitOrder) << endl;
+        } else {
+            cout << "Sell @ price: " << get<1>(limitOrder) << endl;
+        }
+    }
 
-    pair<bool,double> limitOrder(0,0);
+    Market* market = new Market();
+    for (int i = 0; i < 3; i++) {
+        market->addTrader(new Trader());
+    }
 
-    cout << traderJoe->getWealth().second << end;
+    cout << "There are " << market->getNumberOfTraders() << " traders in the market" << endl;
 }
